@@ -216,6 +216,7 @@ class BaseModal extends Component<ModalProps, State> {
       onSwipeOut,
       swipeDirection,
       swipeThreshold,
+      panResponderEnabled,
     } = this.props;
 
     const overlayVisible = hasOverlay && [MODAL_OPENING, MODAL_OPENED].includes(modalState);
@@ -231,6 +232,7 @@ class BaseModal extends Component<ModalProps, State> {
       >
         <View style={[styles.container, hidden]}>
           <DraggableView
+            panResponderEnabled={panResponderEnabled}
             style={StyleSheet.flatten([styles.draggableView, style])}
             onMove={this.handleMove}
             onSwiping={onSwiping}

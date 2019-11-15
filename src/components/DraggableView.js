@@ -143,6 +143,9 @@ export default class DraggableView extends Component<Props> {
     ),
     onStartShouldSetPanResponder: () => true,
     onPanResponderMove: (event, gestureState) => {
+      if(!this.props.panResponderEnabled) {
+        return
+      }
       const isVerticalSwipe = d => ['up', 'down'].includes(d);
       const isHorizontalSwipe = d => ['left', 'right'].includes(d);
       
@@ -169,6 +172,10 @@ export default class DraggableView extends Component<Props> {
       }
     },
     onPanResponderRelease: () => {
+      if(!this.props.panResponderEnabled) {
+        return
+      }
+
       this.pan.flattenOffset();
       const event = this.createDragEvent({
         x: this.pan.x._value,
